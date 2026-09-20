@@ -158,7 +158,7 @@
           <label for="last_name">Last Name</label>
           <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name"
             maxlength="100" required>
-          <div class="invalid-feedback">Please provide your full last name.</div>
+          <div class="invalid-feedback">Please provide your last name.</div>
         </div>
       </div>
 
@@ -172,7 +172,7 @@
       <div class="form-group">
         <label for="affili">Affiliation</label>
         <input type="text" class="form-control" name="affiliation" id="affili" placeholder="Affiliation" maxlength="100"
-               required>
+          required>
         <div class="invalid-feedback">Please provide your affiliation.</div>
       </div>
 
@@ -197,19 +197,14 @@
 
       <hr>
 
-      <hr>
-      
-      <!-- Site: Will registrant participate remotely or in-person and, if so, where?  -->
+      <h5>In-person or Remote?</h5>
       <div class="form-group">
-	<div class="form-check">
-	  <h5>Select the site you will attend:</h5>
-	  <input class="form-check-input" type="radio" name="site" id="site1" value="Boston" required>
-	  <label class="form-check-label" for="site1">Boston</label><br>
-	  <input class="form-check-input" type="radio" name="site" id="site2" value="Paris" required>
-	  <label class="form-check-label" for="site2">Paris</label><br>
-	  <input class="form-check-input" type="radio" name="site" id="site3" value="remote" required>
-	  <label class="form-check-label" for="site3">remote (Zoom)</label><br>
-	</div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="in_person" name="in_person">
+          <label class="form-check-label" for="in_person">
+            <b>Check if you plan to attend in person</b>
+          </label>
+        </div>
       </div>
 
       <!-- This entire block is hidden until people click the in-person attendance button -->
@@ -394,11 +389,10 @@
 
       <div class="form-group">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="contact" name="contact" checked>
+          <input class="form-check-input" type="checkbox" id="contact" name="contact">
           <label class="form-check-label" for="contact">
-            <b>Yes, I am willling to be considered for the role of an MCP</b>
-          </label><br>
-            Uncheck this box if you do NOT wish to be considered for the role of an MCP.
+            <b>Check if you do NOT wish to be considered for the role of an MCP.</b>
+          </label>
         </div>
       </div>
 
@@ -439,7 +433,6 @@
       </p>
 
       <hr>
-      
       <div class="form-group">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="recording" id="recording" required>
@@ -452,7 +445,7 @@
           </label>
           <div class="invalid-feedback">Please acknowledge that you may be recorded.</div>
         </div>
-      
+      </div>
       <div class="form-group">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="code_of_conduct" id="code_of_conduct" required>
@@ -464,19 +457,16 @@
           <div class="invalid-feedback">You must agree to the code of conduct before registering.</div>
         </div>
       </div>
-      
       <div class="form-group" id="register_button">
-        <button id="register" class="btn btn-primary" type="button">Register</button><br>
-	<small class-"form-text text-muted">Any <span style="color: red;">red text</span> that appears after pressing "Register" indicates a missing response.</small><br>
-        <small class="form-text text-muted">Please disable ad or pop-up blockers if you encounter any difficulties completing the registration.</small>
+        <button id="register" class="btn btn-primary" type="button">Register</button>
+        <small class="form-text text-muted">Please disable ad or pop-up blockers if you encounter any difficulties with
+          completing the registration.</small>
       </div>
       <input type="hidden" name="secret" id="secret" value="">
     </form>
   </div>
 
-
-  
-  <!-- Modal Warning that the (Heroku) backend is not functional -->
+  <!-- Modal Warning-->
   <div class="modal fade" id="backendModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -498,7 +488,7 @@
   </div>
 <!--
 
-  <!-- REGISTRATION CLOSED
+  <!--
   <div class="modal fade" id="registrationClosedModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -534,7 +524,7 @@
     </div>
   </div>
 
-<!-- Footer/Privacy notice -->
+
   <footer class="footer">
     <div class="container">
       <dl class="row">
@@ -550,9 +540,7 @@
           </p>
       </dl>
     </div>
-</footer>
-
-
+  </footer>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
   <script>
@@ -673,7 +661,6 @@
         });
     });
 
-    // Badge
     $("input").keyup(function () {
       var target = $("#" + $(this).attr("id") + "-s");
       target.text($(this).val());
@@ -705,37 +692,11 @@
 	  /* document.getElementById("satellite2").required = false; */
           // document.getElementById("covid_rules").required = false;
 
+        };
 
-// Conditional reveal of web elements.
-    
-//    The first set is site-specific for in-person registrants only, based upon radio buttons. -->
-
-    document.querySelectorAll('input[name="site"]').forEach((radio) => {
-	radio.addEventListener('change', (e) => {
-	    const target = document.getElementById('in_person_info');  <!-- in-person only, Boston or Paris -->
-	    const target2 = document.getElementById('boston_only');    <!-- Boston only -->
-	    
-	    if (e.target.value !== 'remote') {
-		target.classList.remove('d-none');
-		document.getElementById("pronoun").required = true;
-
-		if (e.target.value === 'Boston') {
-		    target2.classList.remove('d-none');
-		} else {
-		    target2.classList.add('d-none');
-		}
-
-	    } else {
-		target.classList.add('d-none');
-		target2.classList.add('d-none');
-		document.getElementById("pronoun").required = false;
-
-	    }
-	});
+      });
     });
 
-// The second set reveals options for Session Facilitator volunteers, based upon checkbox. -->
-    
     $(document).ready(function () {
       if (document.getElementById("in_person").checked) {    
         $('site-radio').on("click", function () {
@@ -748,7 +709,6 @@
 	});
       };
     });
-    
   </script>
 
 </body>
