@@ -21,6 +21,7 @@ class Participant(db.Model):
     last_name = db.Column(db.String(200))
     email = db.Column(db.String(200))
     affiliation = db.Column(db.String(200))
+    descmember = db.Column(db.String(5))
 
     # For statistics.  Also sometimes used to determine reg. fee
     early_career = db.Column(db.String(5))
@@ -32,28 +33,11 @@ class Participant(db.Model):
     lname = db.Column(db.String(100))
     sname = db.Column(db.String(100))
     pronoun = db.Column(db.String(100))
-    sprint = db.Column(db.String(5))
-    poster = db.Column(db.String(5))
-    de_school = db.Column(db.String(5))               # main site only
-    # dinner = db.Column(db.String(5))                 # main site only
-    # dinner_plus_one = db.Column(db.String(5))        # main site only
-    # Tshirt_size = db.Column(db.String(5))            # main site only
-    # dietary = db.Column(db.String(500))              # main site only
 
     contact = db.Column(db.String(5))
-    volunteer = db.Column(db.String(5))
 
-    CL = db.Column(db.String(5))
-    SCS = db.Column(db.String(5))
-    DKM = db.Column(db.String(5))
-    MCP = db.Column(db.String(5))
-    PLC = db.Column(db.String(5))
-    PO = db.Column(db.String(5))
-    PZ = db.Column(db.String(5))
-    SC = db.Column(db.String(5))
-    TD = db.Column(db.String(5))
-    WLSS = db.Column(db.String(5))
-    Social = db.Column(db.String(5))
+    newbie = db.Column(db.String(5))
+    first_sprint = db.Column(db.String(5))
 
     recording = db.Column(db.String(5))
     code_of_conduct = db.Column(db.String(5))
