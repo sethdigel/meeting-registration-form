@@ -36,13 +36,22 @@ class Participant(db.Model):
 
     contact = db.Column(db.String(5))
 
+    covid_rules = db.Column(db.String(5))
+
+    monday = db.Column(db.String(5))
+    tuesday = db.Column(db.String(5))
+    wednesday = db.Column(db.String(5))
+    thursday = db.Column(db.String(5))
+    friday = db.Column(db.String(5))
+    dietary = db.Column(db.String(200))
+    access = db.Column(db.String(10))
+    contact = db.Column(db.String(5))
+
     newbie = db.Column(db.String(5))
     first_sprint = db.Column(db.String(5))
 
     recording = db.Column(db.String(5))
     code_of_conduct = db.Column(db.String(5))
-
-    speedchat = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Participant: %r %r [%r]>' % (self.first_name, self.last_name, self.email)
