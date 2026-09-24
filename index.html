@@ -638,7 +638,7 @@
 	radio.addEventListener('change', (e) => {
 	    const target = document.getElementById('in_person_info');  <!-- in-person only, either site -->
 	    
-	    if (e.target.value !== 'remote1' || e.target.value !== 'remote2') {
+	    if (e.target.value !== 'remote1' && e.target.value !== 'remote2') {
 		target.classList.remove('d-none');
 		document.getElementById("pronoun").required = true;
 
