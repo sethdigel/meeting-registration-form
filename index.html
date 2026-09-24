@@ -39,22 +39,17 @@
       max-height: calc(100vh - 225px);
     }
 
-    /*
-#registrationModal .modal-footer {
-  justify-content: space-between;
-} */
-    /* Hides the badge and in-person info until people
-   sign up for in-person attendance.
- */
-    #in_person_info {
-      display: none;
+    #registrationModal .modal-dialog {
+      width: 1000px;
+      max-width: 2048px;
     }
 
-    /* Only display for in-person and main site */
-    /* #main_info {
+    /* Hides the badge and in-person info until people
+   sign up for in-person attendance.
+    #in_person_info {
       display: none;
     } */
-    
+
     #badge span {
       font-family: "Raleway";
     }
@@ -197,26 +192,25 @@
 
       <hr>
 
-      <h5>In-person or Remote?</h5>
+      <h5>Select the site you will attend:</h5>
 
       <!-- Site: Will registrant participate remotely or in-person and, if so, where?  -->
       <div class="form-group">
 	<div class="form-check">
-	  <h5>Select the site you will attend:</h5>
 	  <input class="form-check-input" type="radio" name="site" id="site1" value="Sorbonne" required>
 	  <label class="form-check-label" for="site1">Sorbonne</label><br>
 	  <input class="form-check-input" type="radio" name="site" id="site2" value="SLAC" required>
 	  <label class="form-check-label" for="site2">SLAC</label><br>
 	  <input class="form-check-input" type="radio" name="site" id="remote1" value="remote1" required>
 	  <label class="form-check-label" for="remote1">Zoom, Sorbonne time zone</label><br>
-	  <input class="form-check-input" type="radio" name="site" id="remote2" value="remote2 required>
+	  <input class="form-check-input" type="radio" name="site" id="remote2" value="remote2" required>
 	  <label class="form-check-label" for="remote2">Zoom, SLAC time zone</label><br>
 	</div>
       </div>
 
       <hr>
 
-      <!-- This entire block is hidden until people click the in-person attendance button -->
+      <!-- This entire block is hidden until people click an in-person attendance button -->
       <div id="in_person_info" class="d-none">
 	    
         <h5>Badge Text</h5>
@@ -274,11 +268,11 @@
 
         <div class="container">
 
-          <h5>Covid-19 guidelines</h5>
+          <h5>COVID-19 guidelines</h5>
 
           <p>To ensure the safety of the meeting, in-person participants are asked to follow the following guidelines for this event:
             <ul>
-              <li><b>If you have tested positive for Covid-19</b>: Please follow <a href="https://archive.cdc.gov/#/details?url=https://www.cdc.gov/coronavirus/2019-ncov/your-health/isolation.html" target="_blank">CDC guidelines</a> on isolation and masking. </li>
+              <li><b>If you have tested positive for COVID-19</b>: Please follow <a href="https://archive.cdc.gov/#/details?url=https://www.cdc.gov/coronavirus/2019-ncov/your-health/isolation.html" target="_blank">CDC guidelines</a> on isolation and masking. </li>
               <li><b>Facial Coverings</b>: Facial coverings both indoors and outdoors are optional. </li>
             </ul>
             </p>
@@ -288,16 +282,10 @@
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="covid_rules" id="covid_rules">
               <label class="form-check-label" for="covid_rules">
-                I agree to abide by the Covid-19 related rules at the venue at the time of the meeting.
+                I agree to abide by the COVID-19 related rules at the venue at the time of the meeting.
               </label>
-              <div class="invalid-feedback">You must agree to follow the Covid-19 rules.</div>
+              <div class="invalid-feedback">You must agree to follow the COVID-19 rules.</div>
             </div>
-            <!--
-            <small class="form-text text-muted">
-              For the current Covid-19-related information at CMU, see: <a href="https://www.cmu.edu/coronavirus/"
-                target="_blank" rel="noopener noreferrer">https://www.cmu.edu/coronavirus/</a>.
-            </small>
-            -->
 
           </div>
 
