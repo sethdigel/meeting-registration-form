@@ -137,7 +137,7 @@
     <h2>Registration for the October 2026 DESC Sprint Week</h2>
     <h4>Monday - Friday, October 26 - 30, 2026</h4>
     There is no registration fee for the Sprint Week, thanks to the institutional sponsors.
-    Registration for in-person attendance will close on October 21.
+    Registration for in-person attendance will close on <b>October 16</b>.
     <br>
     <br>
     Please join the LSSTC Slack channel <a href="https://lsstc.slack.com/messages/C2M8FG5A6" target="_blank">#desc-hack-sprint</a> to keep updated on chats, discussions, and announcements during the meeting!
@@ -207,46 +207,34 @@
         </div>
       </div>
 
-      <!-- This entire block is hidden until people click the in-person attendance button -->
-      <div id="in_person_info">
-          <label class="form-check-label" for="in_person_site">
-            <b>Please choose the site where you'll be attending the meeting:</b>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="remote" name="remote">
+          <label class="form-check-label" for="remote">
+            <b>Check if you plan to attend remotely</b>
           </label>
+        </div>
+      </div>
 
-      <div id="site" >
-        <div class="form-group">
-          <div class="col-sm">
-	    <div class="form-group" id="site-radio">
-	      <input type="radio" name="site" id="site1" value="Sorbonne"
-		 required checked/>
-	      <label  for="in-person1">
-	        Sorbonne Université, Paris, France
-       	      </label>
-	    </div>
-		
-	    <div class="form-group">
-	      <input type="radio" name="site" id="site2" value="SLAC" />
-	      <label  for="in-person2">
-	        SLAC, Menlo Park, CA, USA
-	      </label>
-	    </div>
-		
-	    <div class="form-group">
-	      <input type="radio" name="site" id="remote1" value='Sorbonne-remote" />
-	      <label  for="remote1">
-	        Remote (Sorbonne time zone)
-	      </label>
-	    </div>
-
- 	    <div class="form-group">
-	      <input type="radio" name="site" id="remote2" value='SLAC-remote" />
-	      <label  for="remote2">
-	         Remote (SLAC time zone)
-	      </label>
-	    </div>
-          </div>       <!-- end site -->
+      <!-- Site: Will registrant participate remotely or in-person and, if so, where?  -->
+      <div class="form-group">
+	<div class="form-check">
+	  <h5>Select the site you will attend:</h5>
+	  <input class="form-check-input" type="radio" name="site" id="site1" value="Sorbonne" required>
+	  <label class="form-check-label" for="site1">Sorbonne</label><br>
+	  <input class="form-check-input" type="radio" name="site" id="site2" value="SLAC" required>
+	  <label class="form-check-label" for="site2">SLAC</label><br>
+	  <input class="form-check-input" type="radio" name="site" id="remote1" value="remote1" required>
+	  <label class="form-check-label" for="remote1">remote (Zoom, Sorbonne time zone)</label><br>
+	  <input class="form-check-input" type="radio" name="site" id="remote2" value="remote2 required>
+	  <label class="form-check-label" for="remote2">remote (Zoom, SLAC time zone)</label><br>
 	</div>
       </div>
+
+      <hr>
+
+      <!-- This entire block is hidden until people click the in-person attendance button -->
+      <div id="in_person_info" class="d-none">
 	    
         <h5>Badge Text</h5>
         <div class="row">
@@ -380,6 +368,31 @@
 </div>   <!-- end container -->
 </div>   <!-- end div in-person-info  -->
 
+      <!-- This entire block is hidden until people click the remote attendance button -->
+      <div id="remote_info">
+          <label class="form-check-label" for="remote_site">
+            <b>Please choose the site (time zone) where you'll be remotely attending the meeting:</b>
+          </label>
+
+      <div id="site-remote" >
+        <div class="form-group">
+          <div class="col-sm">
+	    <div class="form-group" id="site-radio-remote">
+	      <input type="radio" name="site-remote" id="remote1" value="remote1" />
+	      <label  for="remote1">
+	        Remote (Sorbonne time zone)
+	      </label>
+	    </div>
+
+ 	    <div class="form-group">
+	      <input type="radio" name="site" id="remote2" value="remote2" />
+	      <label  for="remote2">
+	         Remote (SLAC time zone)
+	      </label>
+	    </div>
+          </div>
+	</div>
+      </div>
       <hr>
       <h5>DESC Meeting Contact Persons</h5>
 
@@ -673,38 +686,28 @@
       var scale = badge.width() / target.width();
       if (scale < 1) target.css("font-size", (scale * 100).toString() + "%");
     });
-    $(document).ready(function () {
-      $('#in_person').click(function () {
-        $('#in_person_info').toggle(500);
 
-        if (document.getElementById("in_person").checked) {
-          document.getElementById("pronoun").required = true;
-	  // Setting just one radio button to required should be sufficient
-	  // but doesn't hurt to set them all
-	  document.getElementById("main").required = true;
-	  document.getElementById("satellite1").required = true;
-	  /* document.getElementById("satellite2").required = true; */
+    document.querySelectorAll('input[name="site"]').forEach((radio) => {
+	radio.addEventListener('change', (e) => {
+	    const target = document.getElementById('in_person_info');  <!-- in-person only, either site -->
+	    
+	    if (e.target.value !== 'remote1' || e.target.value !== 'remote2') {
+		target.classList.remove('d-none');
+		document.getElementById("pronoun").required = true;
 
-	  // Uncomment if we have covid rules
-          // document.getElementById("covid_rules").required = true;
+	    } else {
+		target.classList.add('d-none');
+		target2.classList.add('d-none');
+		document.getElementById("pronoun").required = false;
 
-        } else {
-          document.getElementById("pronoun").required = false;
-	
-	  document.getElementById("main").required = false;	
-	  document.getElementById("satellite1").required = false;
-	  /* document.getElementById("satellite2").required = false; */
-          // document.getElementById("covid_rules").required = false;
-
-        };
-
-      });
+	    }
+	});
     });
 
     $(document).ready(function () {
       if (document.getElementById("in_person").checked) {    
         $('site-radio').on("click", function () {
-          if (document.getElementById("main").checked) {
+          if (document.getElementById("site1").checked || document.getElementById("site2").checked) {
 	    // reveal
 	    $('#main_info').show();
 	  } else {
