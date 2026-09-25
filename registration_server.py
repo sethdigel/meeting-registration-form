@@ -23,18 +23,19 @@ class Participant(db.Model):
     affiliation = db.Column(db.String(200))
     descmember = db.Column(db.String(5))
 
+    comp_access = db.Column(db.String(5))
+
     # For statistics.  Also sometimes used to determine reg. fee
-    early_career = db.Column(db.String(5))
+    #early_career = db.Column(db.String(5))
 
     # All of the following are visible only for in-person
     # Some should perhaps be restricted just to the main meeting site, not satellites
-    in_person = db.Column(db.String(5))
-    site = db.Column(db.String(20))    # Site name, e.g., Boston, Paris, or remote
+    site = db.Column(db.String(25))    # Site name, e.g., Boston, Paris, or remote
+
+    need_badge = db.Column(db.String(5))
     lname = db.Column(db.String(100))
     sname = db.Column(db.String(100))
     pronoun = db.Column(db.String(100))
-
-    contact = db.Column(db.String(5))
 
     covid_rules = db.Column(db.String(5))
 
@@ -43,8 +44,8 @@ class Participant(db.Model):
     wednesday = db.Column(db.String(5))
     thursday = db.Column(db.String(5))
     friday = db.Column(db.String(5))
+
     dietary = db.Column(db.String(200))
-    access = db.Column(db.String(10))
     contact = db.Column(db.String(5))
 
     newbie = db.Column(db.String(5))
