@@ -189,7 +189,7 @@
 
       <h5>NERSC and DESC GitHub</h5>
     <p>You should be sure that you have access to NERSC and DESC GitHub. Please see the 
-<a href="https://docs.google.com/document/d/1XcVmbfMRRB4FARwWphgAmM7NXQ1w0hPCGA4jgZ19oRs/edit?tab=t.0#heading=h.9fodgsh3dnvq" target="_blank" rel="noopener noreferrer">LSST DESC Tech Cheat Sheet</a> for information on how to sign up.  If you get stuck, please use the <a href="https://discovery-alliance.slack.com/archives/CB4LA1SBS" target="_blank">#desc-hhelp</a> channel.
+<a href="https://docs.google.com/document/d/1XcVmbfMRRB4FARwWphgAmM7NXQ1w0hPCGA4jgZ19oRs/edit?tab=t.0#heading=h.9fodgsh3dnvq" target="_blank" rel="noopener noreferrer">LSST DESC Tech Cheat Sheet</a> for information on how to sign up.  If you get stuck, please use the <a href="https://discovery-alliance.slack.com/archives/CB4LA1SBS" target="_blank">#desc-help</a> channel.
 
           <div class="form-group">
 
@@ -198,7 +198,7 @@
               <label class="form-check-label" for="comp_access">
                 I have access to NERSC and DESC GitHub, or will be sure to arrange it before Sprint Week!
               </label>
-              <div class="invalid-feedback">You must agree to seek access.</div>
+              <div class="invalid-feedback">You must agree that you have or will seek access.</div>
             </div>
 
           </div>
@@ -210,7 +210,7 @@
 	<div class="form-check">
           <h5>Select the site you will attend:</h5>
 	  <input class="form-check-input" type="radio" name="site" id="site1" value="Sorbonne" required>
-	  <label class="form-check-label" for="site1">Sorbonne</label><br>
+	  <label class="form-check-label" for="site1">Sorbonne (Paris)</label><br>
 	  <input class="form-check-input" type="radio" name="site" id="site2" value="SLAC" required>
 	  <label class="form-check-label" for="site2">SLAC</label><br>
 	  <input class="form-check-input" type="radio" name="site" id="remote1" value="remote1" required>
@@ -675,32 +675,19 @@
 	});
     });
 
-     $(document).ready(function () {
-      $('#need_badge').click(function () {
-        $('#badge_info').toggle(500);
-
-        if (document.getElementById("badge_need").checked) {
-          document.getElementById('badge_info').remove('d-none');
-          document.getElementById("pronoun").required = true;
-	  // Setting just one radio button to required should be sufficient
-	  // but doesn't hurt to set them all
-	  // document.getElementById("main").required = true;
-	  /* document.getElementById("satellite2").required = true; */
-
-	  // Uncomment if we have covid rules
-          document.getElementById("covid_rules").required = true;
-
-        } else {
-          document.getElementById("pronoun").required = false;
-	
-	  document.getElementById("main").required = false;	
-	  document.getElementById("satellite1").required = false;
-	  /* document.getElementById("satellite2").required = false; */
-          document.getElementById("covid_rules").required = false;
-
-        };
-
-      });
+    document.querySelectorAll('input[name="need_badge"]').forEach((checkbox) => {
+	checkbox.addEventListener('change', (e) => {
+	    const target = document.getElementById('in_person_info');  <!-- in-person only, either site -->
+	    
+	    if (e.target.value !== 'remote1' && e.target.value !== 'remote2') {
+		target.classList.remove('d-none');
+		document.getElementById("pronoun").required = true;
+	    } else {
+		target.classList.add('d-none');
+		document.getElementById("pronoun").required = false;
+                document.getElementById("covid_rules").required = false;
+	    }
+	});
     });
 
   </script>
