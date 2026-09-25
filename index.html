@@ -227,7 +227,7 @@
 	    
           <div class="form-group">
 
-            <b> If you have a name badge from another meeting we can save some resources.</b>
+            <b> If you have a name badge from another meeting bring it and we can save some resources.</b>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="need_badge" id="need_badge">
               <label class="form-check-label" for="need_badge">
@@ -680,6 +680,7 @@
         $('#badge_info').toggle(500);
 
         if (document.getElementById("badge_need").checked) {
+          document.getElementById('badge_info').remove('d-none');
           document.getElementById("pronoun").required = true;
 	  // Setting just one radio button to required should be sufficient
 	  // but doesn't hurt to set them all
