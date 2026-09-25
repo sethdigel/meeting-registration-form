@@ -167,7 +167,7 @@
 
       <hr>
 
-      <h5>LSST/DESC Membership</h5>
+      <h5>LSST-DESC Membership</h5>
     <p>Are you currently a member of the Dark Energy Science Collaboration? This info will allow us to better make accommodations for non-DESC attendees.</p>
     <div class="form-group">
 
@@ -187,6 +187,23 @@
 
       <hr>
 
+      <h5>NERSC and DESC GitHub</h5>
+    <p>You should be sure that you have access to NERSC and DESC GitHub. Please see the 
+<a href="https://docs.google.com/document/d/1XcVmbfMRRB4FARwWphgAmM7NXQ1w0hPCGA4jgZ19oRs/edit?tab=t.0#heading=h.9fodgsh3dnvq" target="_blank" rel="noopener noreferrer">LSST DESC Tech Cheat Sheet</a> for information on how to sign up.  If you get stuck, please use the <a href="https://discovery-alliance.slack.com/archives/CB4LA1SBS" target="_blank">#desc-hhelp</a> channel.
+
+          <div class="form-group">
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="comp_access" id="comp_access">
+              <label class="form-check-label" for="comp_access">
+                I have access to NERSC and DESC GitHub, or will be sure to arrange it before Sprint Week!
+              </label>
+              <div class="invalid-feedback">You must agree to seek access.</div>
+            </div>
+
+          </div>
+
+      <hr>
 
       <!-- Site: Will registrant participate remotely or in-person and, if so, where?  -->
       <div class="form-group">
@@ -208,6 +225,20 @@
       <!-- This entire block is hidden until people click an in-person attendance button -->
       <div id="in_person_info" class="d-none">
 	    
+          <div class="form-group">
+
+            <b> If you have a name badge from another meeting we can save some resources.</b>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="need_badge" id="need_badge">
+              <label class="form-check-label" for="need_badge">
+                I would like the organizers to make a name badge for me.
+              </label>
+              <div class="invalid-feedback">You must agree to seek access.</div>
+            </div>
+
+          </div>
+
+      <div id="badge_info" class="d-none">
         <h5>Badge Text</h5>
         <div class="row">
           <div class="col-sm">
@@ -260,6 +291,7 @@
            </div>  <!-- end div id badge -->
           </div>     <!-- end 2nd class col-sm -->
         </div>      <!-- end class row -->
+      </div>
 
         <div class="container">
 
@@ -641,6 +673,33 @@
 		document.getElementById("pronoun").required = false;
 	    }
 	});
+    });
+
+     $(document).ready(function () {
+      $('#need_badge').click(function () {
+        $('#badge_info').toggle(500);
+
+        if (document.getElementById("badge_need").checked) {
+          document.getElementById("pronoun").required = true;
+	  // Setting just one radio button to required should be sufficient
+	  // but doesn't hurt to set them all
+	  // document.getElementById("main").required = true;
+	  /* document.getElementById("satellite2").required = true; */
+
+	  // Uncomment if we have covid rules
+          document.getElementById("covid_rules").required = true;
+
+        } else {
+          document.getElementById("pronoun").required = false;
+	
+	  document.getElementById("main").required = false;	
+	  document.getElementById("satellite1").required = false;
+	  /* document.getElementById("satellite2").required = false; */
+          document.getElementById("covid_rules").required = false;
+
+        };
+
+      });
     });
 
   </script>
