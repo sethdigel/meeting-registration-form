@@ -96,18 +96,19 @@ def register():
     db.session.commit()
 
     # This is where site-specific "registration successful" pages are displayed
-    if participant.site == 'Boston':
-        payment_link = 'https://sites.bu.edu/cosmology/lsst-desc-boston/'
-        r = make_response(render_template('payment_Boston.html',
-                                          data=participant,
-                                          payment_link=payment_link))
-    elif participant.site == 'Paris':
-        payment_link = 'https://example.org'                   #!# FAKE URL (but not used)
-        r = make_response(render_template('payment_Paris.html',
-                                          data=participant,
-                                          payment_link=payment_link))
-    else:
-        r = make_response(render_template('success.html', data=participant))
+    #if participant.site == 'Boston':
+    #    payment_link = 'https://sites.bu.edu/cosmology/lsst-desc-boston/'
+    #    r = make_response(render_template('payment_Boston.html',
+    #                                      data=participant,
+    #                                      payment_link=payment_link))
+    #elif participant.site == 'Paris':
+    #    payment_link = 'https://example.org'                   #!# FAKE URL (but not used)
+    #    r = make_response(render_template('payment_Paris.html',
+    #                                      data=participant,
+    #                                      payment_link=payment_link))
+    #else:
+    #    r = make_response(render_template('success.html', data=participant))
+    r = make_response(render_template('success.html', data=participant))
 
     r.headers.set('Access-Control-Allow-Origin', "*")
     return r
@@ -119,7 +120,7 @@ def registered():
     """
     from datetime import datetime
     # Get list of participants
-    participants = Participant.query.order_by(Participant.last_name, Participant.first_name).with_entities(Participant.first_name, Participant.last_name, Participant.affiliation, Participant.in_person, Participant.site).all()
+    participants = Participant.query.order_by(Participant.last_name, Participant.first_name).with_entities(Participant.first_name, Participant.last_name, Participant.affiliation, Participant.site).all()
     #in_persons = [p for p in participants if p.site != "remote"]
     #n_in_person = len(in_persons)
 
@@ -127,7 +128,8 @@ def registered():
     n_in_person = 0
     for p in participants:
         sites[p[4]] = sites.get(p[4],0) + 1
-        if p[4] != "remote": n_in_person += 1
+        #if p[4] != "remote": n_in_person += 1
+        if "remote" not in p[4]: n_in_person += 1
         pass
 
     sites = dict(sorted(sites.items()))
