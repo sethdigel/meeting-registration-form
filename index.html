@@ -666,7 +666,7 @@
 	checkbox.addEventListener('change', (e) => {
 	    const target = document.getElementById('badge_info');  <!-- in-person only, either site -->
 	    
-	    if (e.target.value == true) {
+	    if (e.target.value) {
 		target.classList.remove('d-none');
 		document.getElementById("pronoun").required = true;
 	    } else {
