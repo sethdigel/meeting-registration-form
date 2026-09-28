@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>DESC Sprint Week 2026 registration form</title>
+  <title>19:02 DESC Sprint Week 2026 registration form</title>
 
   <link rel='stylesheet prefetch'
     href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css'>
@@ -37,11 +37,6 @@
 
     .embed-responsive {
       max-height: calc(100vh - 225px);
-    }
-
-    #registrationModal .modal-dialog {
-      width: 1000px;
-      max-width: 2048px;
     }
 
     #badge span {
@@ -172,16 +167,10 @@
     <div class="form-group">
 
         <div class="form-check">
-          <input class="form-check-input" type="radio" id="descmember" name="descmember" value="yes" required >
-          <label class="form-check-label" for="member">
-            <b>Yes</b>
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" id="descmember" value="no" name="descmember">
-          <label class="form-check-label" for="nonmember">
-            <b>No</b>
-          </label>
+          <input class="form-check-input" type="radio" id="descmember" name="descmember" value="yes">
+          <label class="form-check-label" for="descmember"> <b>Yes</b> </label><br>
+          <input class="form-check-input" type="radio" id="nonmember" value="no" name="descmember">
+          <label class="form-check-label" for="nonmember"> <b>No</b> </label><br>
         </div>
       </div>   <!-- end membership form-group -->
 
@@ -194,7 +183,7 @@
           <div class="form-group">
 
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="comp_access" id="comp_access">
+              <input class="form-check-input" type="checkbox" name="comp_access" id="comp_access" required>
               <label class="form-check-label" for="comp_access">
                 I have access to NERSC and DESC GitHub, or will be sure to arrange it before Sprint Week!
               </label>
@@ -213,9 +202,9 @@
 	  <label class="form-check-label" for="site1">Sorbonne (Paris)</label><br>
 	  <input class="form-check-input" type="radio" name="site" id="site2" value="SLAC" required>
 	  <label class="form-check-label" for="site2">SLAC</label><br>
-	  <input class="form-check-input" type="radio" name="site" id="remote1" value="remote1" required>
+	  <input class="form-check-input" type="radio" name="site" id="remote1" value="remote_Sorbonne" required>
 	  <label class="form-check-label" for="remote1">Zoom, Sorbonne time zone</label><br>
-	  <input class="form-check-input" type="radio" name="site" id="remote2" value="remote2" required>
+	  <input class="form-check-input" type="radio" name="site" id="remote2" value="remote_SLAC" required>
 	  <label class="form-check-label" for="remote2">Zoom, SLAC time zone</label><br>
 	</div>
       </div>
@@ -233,7 +222,6 @@
               <label class="form-check-label" for="need_badge">
                 I would like the organizers to make a name badge for me.
               </label>
-              <div class="invalid-feedback">You must agree to seek access.</div>
             </div>
 
           </div>
@@ -293,7 +281,7 @@
         </div>      <!-- end class row -->
       </div>
 
-        <div class="container">
+        <div id="more_in_person">  <!-- class="container" -->
 
           <h5>COVID-19 guidelines</h5>
 
@@ -307,7 +295,7 @@
           <div class="form-group">
 
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="covid_rules" id="covid_rules">
+              <input class="form-check-input" type="checkbox" name="covid_rules" id="covid_rules" required>
               <label class="form-check-label" for="covid_rules">
                 I agree to abide by the COVID-19 related rules at the venue at the time of the meeting.
               </label>
