@@ -127,7 +127,6 @@ def registered():
     sites = {}
     n_in_person = 0
     for p in participants:
-        print(p)
         sites[p[4]] = sites.get(p[4],0) + 1
         #if p[4] != "remote": n_in_person += 1
         if "remote" not in p[4]: n_in_person += 1
